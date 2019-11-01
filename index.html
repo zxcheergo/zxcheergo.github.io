@@ -170,7 +170,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/28/Statistic01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -184,7 +184,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/01/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2019/10/28/Statistic01/" class="post-title-link" itemprop="url">Statistics01_Basic Assumptions</a>
         </h1>
 
         <div class="post-meta">
@@ -194,8 +194,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-11-01 05:26:09" itemprop="dateCreated datePublished" datetime="2019-11-01T05:26:09+00:00">2019-11-01</time>
+              <time title="创建时间：2019-10-28 11:08:20" itemprop="dateCreated datePublished" datetime="2019-10-28T11:08:20+00:00">2019-10-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-01 08:12:58" itemprop="dateModified" datetime="2019-11-01T08:12:58+00:00">2019-11-01</time>
+              </span>
 
           
 
@@ -208,20 +215,103 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+          <h2 id="参数检验前对变量数据的假设检验"><a href="#参数检验前对变量数据的假设检验" class="headerlink" title="参数检验前对变量数据的假设检验"></a>参数检验前对变量数据的假设检验</h2><p>对一个变量做参数检验是在以下四个假设成立的前提之下进行的：</p>
+<ol>
+<li>数据的正态性</li>
+<li>方差一致性</li>
+<li>变量是连续变量（至少是等间距变量或是比例变量）</li>
+<li>变量的观测值之间是独立的</li>
+</ol>
+<h3 id="变量类型分类"><a href="#变量类型分类" class="headerlink" title="变量类型分类"></a>变量类型分类</h3><ul>
+<li>分类变量 categorical variable<ul>
+<li>0-1变量 binary variable：仅有两种状态<ul>
+<li>名义变量 nominal variable：有更多的种类</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>顺序变量 ordinal variable：同时也是分类变量，但是不同类别之间是有顺序和逻辑的</li>
+<li>连续变量 continuous variable<ul>
+<li>等间距变量 interval variable：变量的不同取值之间的距离是相同的 <em>不过原点的直线</em></li>
+<li>比例变量 ratio variable：首先是等间距变量，同时还可以做倍数的运算 <em>过原点的直线</em><br>###正态性检验<br>可以借助直方图、QQ-plot来直观的判断。<br>衡量与正态性偏离的两个指标：skewness 和 kurtosis。如果说一个分布是“positive skewed”，意味着它的均值是大于中位数的，亦称为“right skewed”；反之亦然。如果说一个分布是“positive kurtosis”，意味着它的形状是更扁平的，而“negative kurtosis”的分布则是更尖锐的。<br>使用Shapiro-Wilk检验可以判断一个分布是否是显著的与正态分布不同，其0假设是两者之间没有不同。故其判别标准是：</li>
+</ul>
+</li>
+<li>p-value &lt; 0.05 认为待判断分布与正态分布显著不同。<em>注意</em> 当样本量很大时，即使是与正态分布的差异很小也会得到显著的结果，此时需要借助QQ-plot来判别。</li>
+<li>p-value &gt; 0.05 认为待判断的分布与正态分布没有显著差别。</li>
+</ul>
+<h3 id="方差同质检验"><a href="#方差同质检验" class="headerlink" title="方差同质检验"></a>方差同质检验</h3>
+      
+    </div>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/24/%E5%A6%82%E4%BD%95%E5%9C%A8AWS%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zxcheergo">
+      <meta itemprop="description" content="">
+    </span>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zxcheergo's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/24/%E5%A6%82%E4%BD%95%E5%9C%A8AWS%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">如何在AWS上部署Hexo个人博客</a>
+        </h1>
 
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-24 23:34:03" itemprop="dateCreated datePublished" datetime="2019-10-24T23:34:03+00:00">2019-10-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-01 08:10:16" itemprop="dateModified" datetime="2019-11-01T08:10:16+00:00">2019-11-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="在亚马逊AWS上部署个人博客-基于Hexo框架"><a href="#在亚马逊AWS上部署个人博客-基于Hexo框架" class="headerlink" title="在亚马逊AWS上部署个人博客(基于Hexo框架)"></a>在亚马逊AWS上部署个人博客(基于Hexo框架)</h2><h3 id="写作目的"><a href="#写作目的" class="headerlink" title="写作目的"></a>写作目的</h3><p>亚马逊的AWS服务器是非常好的入门选择，因为它稳定、免费、功能够用，对于新手来说相当友好。现在有越来越多的人搭建自己的个人博客，在上面可以分享自己的心得体会。虽然我们可以基于GitHub快速的部署一个私人博客，但是这样的博客首先源码比公开，其次由于GitHub在国内的访问一直不是很稳定，再加上喜欢动手的朋友肯定想拥有一个自己的服务器，于是在这样的动机之下博主就开始了探索。无奈网络上的教程质量参差不齐，博主在经过努力之后找到了可以成功部署的方法，特写下与大家分享。 </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/24/%E5%A6%82%E4%BD%95%E5%9C%A8AWS%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -283,9 +373,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
