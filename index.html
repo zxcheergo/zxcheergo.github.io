@@ -298,16 +298,16 @@
 
       
         
-          
-            <h2 id="如何在R中对变量进行循环操作"><a href="#如何在R中对变量进行循环操作" class="headerlink" title="如何在R中对变量进行循环操作"></a>如何在R中对变量进行循环操作</h2><blockquote>
+          <h2 id="如何在R中对变量进行循环操作"><a href="#如何在R中对变量进行循环操作" class="headerlink" title="如何在R中对变量进行循环操作"></a>如何在R中对变量进行循环操作</h2><blockquote>
 <p> 在R中对若干个被试或者对一个被试的若干次操作中，常常会出现重复的操作。例如对被试1的操作与被试2相比，仅仅是编号不同，此时需要对存储数据的变量（变量命名体现编号）进行重复的操作。希望在这种情况下，可以采用循环解决。有两种思路。</p>
 </blockquote>
-<h3 id="方法一：采用for循环操作"><a href="#方法一：采用for循环操作" class="headerlink" title="方法一：采用for循环操作"></a>方法一：采用for循环操作</h3><p>首先，需要生成需要的用来存储数据的变量，这些变量的名称应该是体现不同的被试编号或者操作次序，因此很显然会以<code>1, 2, 3, 4, ...</code>的方式标记。为了生成这一模式的变量，需要使用<code>paste()</code>函数。</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">storeOfVariable &lt;- paste(“participant”, <span class="number">1</span>:<span class="number">5</span>, =“”)</span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">5</span>) &#123;</span><br><span class="line">      assign(storeOfVariable[i], someCalculation)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法二：采用-apply-函数族效率更高"><a href="#方法二：采用-apply-函数族效率更高" class="headerlink" title="方法二：采用*apply()函数族效率更高"></a>方法二：采用<code>*apply()</code>函数族<strong>效率更高</strong></h3><p>在R中，有一类函数是专门用于对数据框、列表中的元素进行迭代式操作的。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/27/2019-11-15/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
