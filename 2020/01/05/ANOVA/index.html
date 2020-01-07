@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="zxcheergo&#39;s blog">
 <meta property="og:description" content="ANOVAANOVA又称为方差分析，首先需要将方差分解  $SS_T$: 总体方差是指每个观测值与所有的样本计算出来的均值的平方差之和 $SS_M$: 模型方差是指每组的均值与所有的样本的均值的平方差之和 模型可以解释的方差 $SS_R$: 残差方差是指观测值与每组的均值的平方差之和 模型无法解释的方差">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-07T14:09:33.121Z">
+<meta property="og:updated_time" content="2020-01-07T16:34:02.801Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -355,7 +355,7 @@
 <li>$df_A = k - 1$</li>
 <li>$df_B = l - 1$</li>
 <li>$df_{A*B} = df_A * df_B$</li>
-<li>$df_R = k<em>l</em>(m-1)$</li>
+<li>$df_R = k * l * (m-1)$</li>
 </ul>
 <p>在实际操作中，首先需要设置contrast。然后利用<code>aov</code>命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contrast(dataFrame$var) &lt;- cbind()</span><br><span class="line">model &lt;- aov(DV ~ IV1 * IV2, data = dataFrame)</span><br><span class="line">Anova(model, type = &quot;III&quot;)</span><br></pre></td></tr></table></figure>
