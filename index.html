@@ -228,6 +228,528 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/05/ANOVA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zxcheergo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zxcheergo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/05/ANOVA/" itemprop="url">Statistics-ANOVA</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-05T00:00:00+00:00">
+                2020-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ANOVA"><a href="#ANOVA" class="headerlink" title="ANOVA"></a>ANOVA</h1><p>ANOVA又称为方差分析，首先需要将方差分解</p>
+<ul>
+<li>$SS_T$: 总体方差是指每个观测值与所有的样本计算出来的均值的平方差之和</li>
+<li>$SS_M$: 模型方差是指每组的均值与所有的样本的均值的平方差之和 <strong>模型可以解释的方差</strong></li>
+<li>$SS_R$: 残差方差是指观测值与每组的均值的平方差之和 <strong>模型无法解释的方差</strong></li>
+</ul>
+<p>自由度：<br>$df_M = k - 1$, 其中k是指分组的个数<br>$df_R = N - k$, 其中N是指样本量</p>
+<h2 id="1-1-way非重复测量ANOVA"><a href="#1-1-way非重复测量ANOVA" class="headerlink" title="1 1-way非重复测量ANOVA"></a>1 1-way非重复测量ANOVA</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># ANOVA部分</span><br><span class="line">model &lt;- aov(value ~ group, data = dataFrame)</span><br><span class="line">summary(model)</span><br><span class="line"># 后续的两两比较</span><br><span class="line">pairwise.t.test(dataFrame$value, dataFrame$group, p.adjust.method = &quot;bonferroni&quot;/&quot;holm&quot;/&quot;BH&quot;)</span><br><span class="line">TukeyHSD(model) # 直接得到两两比较的结果</span><br></pre></td></tr></table></figure>
+<h2 id="2-1-way重复测量ANOVA"><a href="#2-1-way重复测量ANOVA" class="headerlink" title="2 1-way重复测量ANOVA"></a>2 1-way重复测量ANOVA</h2><p>重复测量中，假设有<code>n</code>个被试，每个被试经历<code>k</code>个水平，则自由度为：</p>
+<ul>
+<li>$df_W = n(k-1)$</li>
+<li>$df_M = k - 1$</li>
+<li>$df_R = (k-1)(n-1)$<h3 id="2-1-数据格式转化"><a href="#2-1-数据格式转化" class="headerlink" title="2.1 数据格式转化"></a>2.1 数据格式转化</h3>首先需要将数据由宽格式-&gt;长格式，这一步使用<code>reshape</code>包。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">library(reshape)</span><br><span class="line">longData &lt;- melt(wideData, id = &quot;participant&quot;, measured = c(&quot;measure1&quot;, &quot;measure2&quot;, &quot;measure3&quot;)</span><br><span class="line">names(longData) &lt;- c(&quot;participant&quot;, &quot;nameOfTreatment&quot;, &quot;value&quot;) </span><br><span class="line"># 此处nameOfTreatment是不同的组内变量的统称，value是对应的每个测量的值</span><br></pre></td></tr></table></figure>
+<p>注意，此处需要保证<strong>wideData</strong>是<strong>data.frame</strong>, 否则会报错。</p>
+<h3 id="2-2-ezANOVA"><a href="#2-2-ezANOVA" class="headerlink" title="2.2 ezANOVA"></a>2.2 ezANOVA</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(ez)</span><br><span class="line">model &lt;- ezANOVA(data = longData, dv = .(value), wid = .(participant), within = .(nameOfTreatment), detailed = TRUE, type = n)</span><br><span class="line">model</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-使用multilevel模型"><a href="#2-3-使用multilevel模型" class="headerlink" title="2.3 使用multilevel模型"></a>2.3 使用multilevel模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">library(nlme)</span><br><span class="line">baseline &lt;- lme(DV ~ 1, random = ~1|participant/IV, data = dataFrame, method = &quot;ML&quot;)</span><br><span class="line">plusModel &lt;- update(baseline, .~. + IV)</span><br><span class="line">anova(baseline, plusModel)</span><br><span class="line">summary(plusModel)</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-way-ANOVA"><a href="#3-2-way-ANOVA" class="headerlink" title="3 2-way ANOVA"></a>3 2-way ANOVA</h2><p>假设变量A有k个水平，变量B有l个水平，并且在每个cell(该cell中的A是水平i，B是水平j)中都有m次观测，则其自由度计算为：</p>
+<ul>
+<li>$df_M = k*l - 1$</li>
+<li>$df_A = k - 1$</li>
+<li>$df_B = l - 1$</li>
+<li>$df_{A*B} = df_A * df_B$</li>
+<li>$df_R = k<em>l</em>(m-1)$</li>
+</ul>
+<p>在实际操作中，首先需要设置contrast。然后利用<code>aov</code>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contrast(dataFrame$var) &lt;- cbind()</span><br><span class="line">model &lt;- aov(DV ~ IV1 * IV2, data = dataFrame)</span><br><span class="line">Anova(model, type = &quot;III&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="分析simple-main-effect"><a href="#分析simple-main-effect" class="headerlink" title="分析simple main effect"></a>分析simple main effect</h3><p>固定住一个自变量A，考察另一个自变量B在自变量A为某水平下，对因变量的影响。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">library(phia)</span><br><span class="line">testInteractions(model, fixed = &quot;varA&quot;, across = &quot;varB&quot;, adjustment = &quot;&quot;)</span><br></pre></td></tr></table></figure>
+<p>如果发现simple main effect中有显著的，则可以进行下一步的 post hoc 分析。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/05/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zxcheergo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zxcheergo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/05/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" itemprop="url">Statistics-R语言数据基本操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-05T00:00:00+00:00">
+                2020-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="R中对数据的预操作"><a href="#R中对数据的预操作" class="headerlink" title="R中对数据的预操作"></a>R中对数据的预操作</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/05/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/03/%E6%AF%94%E8%BE%83%E5%9D%87%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zxcheergo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zxcheergo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/03/%E6%AF%94%E8%BE%83%E5%9D%87%E5%80%BC/" itemprop="url">Statistics-相关性</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-03T00:00:00+00:00">
+                2020-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="比较两个均值"><a href="#比较两个均值" class="headerlink" title="比较两个均值"></a>比较两个均值</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/03/%E6%AF%94%E8%BE%83%E5%9D%87%E5%80%BC/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/03/%E7%BB%9F%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zxcheergo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zxcheergo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/03/%E7%BB%9F%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" itemprop="url">Statistics-统计基本概念</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-03T00:00:00+00:00">
+                2020-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="统计中的基本概念"><a href="#统计中的基本概念" class="headerlink" title="统计中的基本概念"></a>统计中的基本概念</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/03/%E7%BB%9F%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/27/2019-11-15/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -783,7 +1305,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -843,7 +1365,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

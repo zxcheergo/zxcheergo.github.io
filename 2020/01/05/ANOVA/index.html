@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="什么是协方差分析不属于实验操作变量（自变量）的其他连续型变量，但对因变量会有影响，将它们称为协变量，对协变量的分析称为协方差分析。使用协方差分析的原因：  减少残差的变异型： 如果可以依靠协变量解释残差 $(SS_R)$ ，便可以减少误差项的方差，从而更准确评估自变量的影响$(SS_M)$。 剔除confounds变量的影响">
+<meta name="description" content="ANOVAANOVA又称为方差分析，首先需要将方差分解  $SS_T$: 总体方差是指每个观测值与所有的样本计算出来的均值的平方差之和 $SS_M$: 模型方差是指每组的均值与所有的样本的均值的平方差之和 模型可以解释的方差 $SS_R$: 残差方差是指观测值与每组的均值的平方差之和 模型无法解释的方差  自由度：$df_M = k - 1$, 其中k是指分组的个数$df_R = N - k$,">
 <meta name="keywords" content="Statistics">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Statistics02-ANCOVA">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;01&#x2F;ANCOVA&#x2F;index.html">
+<meta property="og:title" content="Statistics-ANOVA">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;05&#x2F;ANOVA&#x2F;index.html">
 <meta property="og:site_name" content="zxcheergo&#39;s blog">
-<meta property="og:description" content="什么是协方差分析不属于实验操作变量（自变量）的其他连续型变量，但对因变量会有影响，将它们称为协变量，对协变量的分析称为协方差分析。使用协方差分析的原因：  减少残差的变异型： 如果可以依靠协变量解释残差 $(SS_R)$ ，便可以减少误差项的方差，从而更准确评估自变量的影响$(SS_M)$。 剔除confounds变量的影响">
+<meta property="og:description" content="ANOVAANOVA又称为方差分析，首先需要将方差分解  $SS_T$: 总体方差是指每个观测值与所有的样本计算出来的均值的平方差之和 $SS_M$: 模型方差是指每组的均值与所有的样本的均值的平方差之和 模型可以解释的方差 $SS_R$: 残差方差是指观测值与每组的均值的平方差之和 模型无法解释的方差  自由度：$df_M = k - 1$, 其中k是指分组的个数$df_R = N - k$,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-26T16:23:40.106Z">
+<meta property="og:updated_time" content="2020-01-07T14:01:12.691Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/01/ANCOVA/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/01/05/ANOVA/"/>
 
 
 
 
 
-  <title>Statistics02-ANCOVA | zxcheergo's blog</title>
+  <title>Statistics-ANOVA | zxcheergo's blog</title>
   
 
 
@@ -231,7 +231,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/ANCOVA/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/05/ANOVA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zxcheergo">
@@ -248,7 +248,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Statistics02-ANCOVA</h1>
+          <h1 class="post-title" itemprop="name headline">Statistics-ANOVA</h1>
         
 
         <div class="post-meta">
@@ -260,8 +260,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-01T00:00:00+00:00">
-                2019-11-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-05T00:00:00+00:00">
+                2020-01-05
               </time>
             
 
@@ -279,8 +279,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/11/01/ANCOVA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/11/01/ANCOVA/" itemprop="commentsCount"></span>
+                <a href="/2020/01/05/ANOVA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/01/05/ANOVA/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -308,45 +308,38 @@
       
 
       
-        <h3 id="什么是协方差分析"><a href="#什么是协方差分析" class="headerlink" title="什么是协方差分析"></a>什么是协方差分析</h3><p>不属于实验操作变量（自变量）的其他连续型变量，但对因变量会有影响，将它们称为<strong>协变量</strong>，对协变量的分析称为协方差分析。<br>使用协方差分析的原因：</p>
+        <h1 id="ANOVA"><a href="#ANOVA" class="headerlink" title="ANOVA"></a>ANOVA</h1><p>ANOVA又称为方差分析，首先需要将方差分解</p>
 <ul>
-<li>减少残差的变异型： 如果可以依靠协变量解释残差 $(SS_R)$ ，便可以减少误差项的方差，从而更准确评估自变量的影响$(SS_M)$。</li>
-<li>剔除confounds变量的影响<a id="more"></a>
+<li>$SS_T$: 总体方差是指每个观测值与所有的样本计算出来的均值的平方差之和</li>
+<li>$SS_M$: 模型方差是指每组的均值与所有的样本的均值的平方差之和 <strong>模型可以解释的方差</strong></li>
+<li>$SS_R$: 残差方差是指观测值与每组的均值的平方差之和 <strong>模型无法解释的方差</strong></li>
+</ul>
+<p>自由度：<br>$df_M = k - 1$, 其中k是指分组的个数<br>$df_R = N - k$, 其中N是指样本量</p>
+<h2 id="1-1-way非重复测量ANOVA"><a href="#1-1-way非重复测量ANOVA" class="headerlink" title="1 1-way非重复测量ANOVA"></a>1 1-way非重复测量ANOVA</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># ANOVA部分</span><br><span class="line">model &lt;- aov(value ~ group, data = dataFrame)</span><br><span class="line">summary(model)</span><br><span class="line"># 后续的两两比较</span><br><span class="line">pairwise.t.test(dataFrame$value, dataFrame$group, p.adjust.method = &quot;bonferroni&quot;/&quot;holm&quot;/&quot;BH&quot;)</span><br><span class="line">TukeyHSD(model) # 直接得到两两比较的结果</span><br></pre></td></tr></table></figure>
+<h2 id="2-1-way重复测量ANOVA"><a href="#2-1-way重复测量ANOVA" class="headerlink" title="2 1-way重复测量ANOVA"></a>2 1-way重复测量ANOVA</h2><p>重复测量中，假设有<code>n</code>个被试，每个被试经历<code>k</code>个水平，则自由度为：</p>
+<ul>
+<li>$df_W = n(k-1)$</li>
+<li>$df_M = k - 1$</li>
+<li>$df_R = (k-1)(n-1)$<h3 id="2-1-数据格式转化"><a href="#2-1-数据格式转化" class="headerlink" title="2.1 数据格式转化"></a>2.1 数据格式转化</h3>首先需要将数据由宽格式-&gt;长格式，这一步使用<code>reshape</code>包。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">library(reshape)</span><br><span class="line">longData &lt;- melt(wideData, id = &quot;participant&quot;, measured = c(&quot;measure1&quot;, &quot;measure2&quot;, &quot;measure3&quot;)</span><br><span class="line">names(longData) &lt;- c(&quot;participant&quot;, &quot;nameOfTreatment&quot;, &quot;value&quot;) </span><br><span class="line"># 此处nameOfTreatment是不同的组内变量的统称，value是对应的每个测量的值</span><br></pre></td></tr></table></figure>
+<p>注意，此处需要保证<strong>wideData</strong>是<strong>data.frame</strong>, 否则会报错。</p>
+<h3 id="2-2-ezANOVA"><a href="#2-2-ezANOVA" class="headerlink" title="2.2 ezANOVA"></a>2.2 ezANOVA</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(ez)</span><br><span class="line">model &lt;- ezANOVA(data = longData, dv = .(value), wid = .(participant), within = .(nameOfTreatment), detailed = TRUE, type = n)</span><br><span class="line">model</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-使用multilevel模型"><a href="#2-3-使用multilevel模型" class="headerlink" title="2.3 使用multilevel模型"></a>2.3 使用multilevel模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">library(nlme)</span><br><span class="line">baseline &lt;- lme(DV ~ 1, random = ~1|participant/IV, data = dataFrame, method = &quot;ML&quot;)</span><br><span class="line">plusModel &lt;- update(baseline, .~. + IV)</span><br><span class="line">anova(baseline, plusModel)</span><br><span class="line">summary(plusModel)</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-way-ANOVA"><a href="#3-2-way-ANOVA" class="headerlink" title="3 2-way ANOVA"></a>3 2-way ANOVA</h2><p>假设变量A有k个水平，变量B有l个水平，并且在每个cell(该cell中的A是水平i，B是水平j)中都有m次观测，则其自由度计算为：</p>
+<ul>
+<li>$df_M = k*l - 1$</li>
+<li>$df_A = k - 1$</li>
+<li>$df_B = l - 1$</li>
+<li>$df_{A*B} = df_A * df_B$</li>
+<li>$df_R = k<em>l</em>(m-1)$</li>
+</ul>
+<p>在实际操作中，首先需要设置contrast。然后利用<code>aov</code>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contrast(dataFrame$var) &lt;- cbind()</span><br><span class="line">model &lt;- aov(DV ~ IV1 * IV2, data = dataFrame)</span><br><span class="line">Anova(model, type = &quot;III&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="分析simple-main-effect"><a href="#分析simple-main-effect" class="headerlink" title="分析simple main effect"></a>分析simple main effect</h3><p>固定住一个自变量A，考察另一个自变量B在自变量A为某水平下，对因变量的影响。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">library(phia)</span><br><span class="line">testInteractions(model, fixed = &quot;varA&quot;, across = &quot;varB&quot;, adjustment = &quot;&quot;)</span><br></pre></td></tr></table></figure>
+<p>如果发现simple main effect中有显著的，则可以进行下一步的 post hoc 分析。</p>
 
-</li>
-</ul>
-<h4 id="协方差分析的方差的分解"><a href="#协方差分析的方差的分解" class="headerlink" title="协方差分析的方差的分解"></a>协方差分析的方差的分解</h4><p>类似于ANOVA，可以将协方差分析的方差$SS_T$分解为$SS_M$和$SS_R$，由于协变量的存在，协变量既可以解释模型带来的方差又可以解释部分的残差，从而通过控制这部分的<strong>公共方差</strong>可以达到提高$F=\frac{Model}{Residal}$检验量的效果。</p>
-<ul>
-<li>因变量的分解类似于ANOVA<br>$$SST_y=\Sigma_{i=1}^k(y_i-\bar{y})^2=SSM_y+SSR_y$$</li>
-<li>协变量的分解分为两部分，一部分是协变量自身的方差的分解：<br>$$SST_x=\Sigma_{i=1}^k(x_i-\bar{x})^2=SSM_x+SSR_x$$</li>
-<li>另一部分则是协变量与因变量的共同协方差：<br>$$SPT=\Sigma_{i=1}^N\Sigma_{j=1}^{n_i}(y_{ij}-\bar{y})(\bar{x_i}-\bar{x})+\Sigma_{i=1}^k\Sigma_{j=1}^{n_i}(y_{ij}-\bar{y_i})(x_{ij}-\bar{x_i})=SPM+SPR$$</li>
-<li>最后，利用协变量的方差项来修正$SSM$和$SSR$:<br>$$SSM_y’=SSM_y-[\frac{SPT^2}{SST_x}-\frac{SPR^2}{SSR_x}]$$<br>$$SSR_y’=SSR_y-\frac{SPR^2}{SSR_x}$$</li>
-</ul>
-<h3 id="使用ANCOVA的假设"><a href="#使用ANCOVA的假设" class="headerlink" title="使用ANCOVA的假设"></a>使用ANCOVA的假设</h3><p>在ANOVA的基础上，还有两个额外的假设：</p>
-<h4 id="协变量与实验控制变量的效果是独立的"><a href="#协变量与实验控制变量的效果是独立的" class="headerlink" title="协变量与实验控制变量的效果是独立的"></a>协变量与实验控制变量的效果是独立的</h4><p>在理想情况下，协变量解释的方差应该与实验操作无法解释的方差有重叠，而与实验控制变量解释的方差无重叠，这样在剔除协变量方差时可以减少误差项的方差，从而增强实验变量的效果。</p>
-<h4 id="回归斜率的一致性"><a href="#回归斜率的一致性" class="headerlink" title="回归斜率的一致性"></a>回归斜率的一致性</h4><p>如果以协变量作为x轴，因变量作为y轴，先不考虑自变量的影响，将所有的数据绘制在一张图上，回归斜率一致是指：不同组（以不同的自变量的水平划分）构成的数据集，绘制回归线，这些回归线的斜率应该是相同的。</p>
-<h3 id="用R进行ANCOVA的步骤"><a href="#用R进行ANCOVA的步骤" class="headerlink" title="用R进行ANCOVA的步骤"></a>用R进行ANCOVA的步骤</h3><ol>
-<li>输入数据</li>
-<li>探索数据，得到描述性统计，并进行参数统计的适用性检测</li>
-<li>检查协变量与任意的自变量之间的独立性，以协变量作为outcome，进行ANOVA，如果得到显著性的结果，则说明协变量与自变量独立性假设无效</li>
-<li>进行ANCOVA</li>
-<li>进行事后比较或者contrast</li>
-<li>检查回归斜率是否一致：再次进行ANCOVA，纳入自变量与协变量的交互作用，如果交互作用显著，则回归斜率一致假设无效</li>
-</ol>
-<h3 id="ANCOVA使用注意点"><a href="#ANCOVA使用注意点" class="headerlink" title="ANCOVA使用注意点"></a>ANCOVA使用注意点</h3><h4 id="预测变量的输入顺序"><a href="#预测变量的输入顺序" class="headerlink" title="预测变量的输入顺序"></a>预测变量的输入顺序</h4><p>如果使用<code>aov(outcome ~ pred + cov, data)</code> 命令，输入自变量与协变量的顺序的不同会导致结果的不同，所以，在进行ANCOVA之前，需要考虑两个问题：</p>
-<ul>
-<li>采用哪种方式来计算SS？</li>
-<li>采用何种contrast的建立方式？</li>
-</ul>
-<h5 id="sum-of-square的类型"><a href="#sum-of-square的类型" class="headerlink" title="sum of square的类型"></a>sum of square的类型</h5><p>一共有4种计算SS的方式</p>
-<ol>
-<li>Type I：采用分级回归的方式，即按照变量的顺序，依次考虑输入变量的影响。例如有三个变量$x_1, x_2, x_3$按顺序输入模型，则在该方式下计算SS会先考仅仅考虑$x_1$而不考虑其他两个变量，再在考虑$x_1$的前提下计算$x_2$，再在考虑$x_1$和$x_2$的前提下计算$x_3$。<strong>适用场景</strong>：除非是变量之间是完全彼此独立的，否则用这种计算方式难以真实评价各个变量的主效应。</li>
-<li>Type III：在计算一个变量的影响时，会将其他所有变量的影响都考虑进去，而不会在意变量的输入顺序。<strong>特点</strong>：由于是在考虑交互效应的同时去考虑主效应的，如果交互效应显著，则关于主效应是否显著的推断则需要慎重。</li>
-<li>Type II：与Type III类似，唯一不同的是它不会考虑高阶交互项的影响，例如现在要分析某个主效应的影响，则只会考虑其他所有的主效应变量的影响，而不会考虑任意的交互项。</li>
-<li>总结：<br>使用哪种SS的计算方式取决于假设是什么，如果是围绕着交互项研究，则方式II和III得到的结果是一样的；而如果只研究主效应，而不想预测交互效应，则使用方式II；如果设计是不平衡的，采用方式III。</li>
-</ol>
-<h5 id="ANCOVA中的constrast"><a href="#ANCOVA中的constrast" class="headerlink" title="ANCOVA中的constrast"></a>ANCOVA中的constrast</h5><p><strong>注意</strong>在使用Type III计算SS时，必须采用的constrast设计。</p>
-<h5 id="考虑了协变量后对因变量的均值的修正"><a href="#考虑了协变量后对因变量的均值的修正" class="headerlink" title="考虑了协变量后对因变量的均值的修正"></a>考虑了协变量后对因变量的均值的修正</h5>
       
     </div>
     
@@ -376,8 +369,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/28/Statistic01/" rel="next" title="Statistics01_Basic Assumptions">
-                <i class="fa fa-chevron-left"></i> Statistics01_Basic Assumptions
+              <a href="/2020/01/05/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" rel="next" title="Statistics-R语言数据基本操作">
+                <i class="fa fa-chevron-left"></i> Statistics-R语言数据基本操作
               </a>
             
           </div>
@@ -385,10 +378,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/27/2019-11-15/" rel="prev" title="R语言使用帮助">
-                R语言使用帮助 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -530,7 +519,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是协方差分析"><span class="nav-number">1.</span> <span class="nav-text">什么是协方差分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#协方差分析的方差的分解"><span class="nav-number">1.1.</span> <span class="nav-text">协方差分析的方差的分解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ANCOVA的假设"><span class="nav-number">2.</span> <span class="nav-text">使用ANCOVA的假设</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#协变量与实验控制变量的效果是独立的"><span class="nav-number">2.1.</span> <span class="nav-text">协变量与实验控制变量的效果是独立的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回归斜率的一致性"><span class="nav-number">2.2.</span> <span class="nav-text">回归斜率的一致性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用R进行ANCOVA的步骤"><span class="nav-number">3.</span> <span class="nav-text">用R进行ANCOVA的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ANCOVA使用注意点"><span class="nav-number">4.</span> <span class="nav-text">ANCOVA使用注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预测变量的输入顺序"><span class="nav-number">4.1.</span> <span class="nav-text">预测变量的输入顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sum-of-square的类型"><span class="nav-number">4.1.1.</span> <span class="nav-text">sum of square的类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ANCOVA中的constrast"><span class="nav-number">4.1.2.</span> <span class="nav-text">ANCOVA中的constrast</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#考虑了协变量后对因变量的均值的修正"><span class="nav-number">4.1.3.</span> <span class="nav-text">考虑了协变量后对因变量的均值的修正</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ANOVA"><span class="nav-number">1.</span> <span class="nav-text">ANOVA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-way非重复测量ANOVA"><span class="nav-number">1.1.</span> <span class="nav-text">1 1-way非重复测量ANOVA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-way重复测量ANOVA"><span class="nav-number">1.2.</span> <span class="nav-text">2 1-way重复测量ANOVA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-数据格式转化"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 数据格式转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-ezANOVA"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 ezANOVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-使用multilevel模型"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 使用multilevel模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-way-ANOVA"><span class="nav-number">1.3.</span> <span class="nav-text">3 2-way ANOVA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析simple-main-effect"><span class="nav-number">1.3.1.</span> <span class="nav-text">分析simple main effect</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

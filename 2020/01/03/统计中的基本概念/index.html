@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="什么是协方差分析不属于实验操作变量（自变量）的其他连续型变量，但对因变量会有影响，将它们称为协变量，对协变量的分析称为协方差分析。使用协方差分析的原因：  减少残差的变异型： 如果可以依靠协变量解释残差 $(SS_R)$ ，便可以减少误差项的方差，从而更准确评估自变量的影响$(SS_M)$。 剔除confounds变量的影响">
+<meta name="description" content="统计中的基本概念">
 <meta name="keywords" content="Statistics">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Statistics02-ANCOVA">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;01&#x2F;ANCOVA&#x2F;index.html">
+<meta property="og:title" content="Statistics-统计基本概念">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;03&#x2F;%E7%BB%9F%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5&#x2F;index.html">
 <meta property="og:site_name" content="zxcheergo&#39;s blog">
-<meta property="og:description" content="什么是协方差分析不属于实验操作变量（自变量）的其他连续型变量，但对因变量会有影响，将它们称为协变量，对协变量的分析称为协方差分析。使用协方差分析的原因：  减少残差的变异型： 如果可以依靠协变量解释残差 $(SS_R)$ ，便可以减少误差项的方差，从而更准确评估自变量的影响$(SS_M)$。 剔除confounds变量的影响">
+<meta property="og:description" content="统计中的基本概念">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-26T16:23:40.106Z">
+<meta property="og:updated_time" content="2020-01-07T14:01:27.319Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/01/ANCOVA/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/01/03/统计中的基本概念/"/>
 
 
 
 
 
-  <title>Statistics02-ANCOVA | zxcheergo's blog</title>
+  <title>Statistics-统计基本概念 | zxcheergo's blog</title>
   
 
 
@@ -231,7 +231,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/ANCOVA/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/03/%E7%BB%9F%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zxcheergo">
@@ -248,7 +248,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Statistics02-ANCOVA</h1>
+          <h1 class="post-title" itemprop="name headline">Statistics-统计基本概念</h1>
         
 
         <div class="post-meta">
@@ -260,8 +260,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-01T00:00:00+00:00">
-                2019-11-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-03T00:00:00+00:00">
+                2020-01-03
               </time>
             
 
@@ -279,8 +279,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/11/01/ANCOVA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/11/01/ANCOVA/" itemprop="commentsCount"></span>
+                <a href="/2020/01/03/%E7%BB%9F%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/01/03/%E7%BB%9F%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -308,45 +308,71 @@
       
 
       
-        <h3 id="什么是协方差分析"><a href="#什么是协方差分析" class="headerlink" title="什么是协方差分析"></a>什么是协方差分析</h3><p>不属于实验操作变量（自变量）的其他连续型变量，但对因变量会有影响，将它们称为<strong>协变量</strong>，对协变量的分析称为协方差分析。<br>使用协方差分析的原因：</p>
-<ul>
-<li>减少残差的变异型： 如果可以依靠协变量解释残差 $(SS_R)$ ，便可以减少误差项的方差，从而更准确评估自变量的影响$(SS_M)$。</li>
-<li>剔除confounds变量的影响<a id="more"></a>
+        <h1 id="统计中的基本概念"><a href="#统计中的基本概念" class="headerlink" title="统计中的基本概念"></a>统计中的基本概念</h1><a id="more"></a>
 
-</li>
-</ul>
-<h4 id="协方差分析的方差的分解"><a href="#协方差分析的方差的分解" class="headerlink" title="协方差分析的方差的分解"></a>协方差分析的方差的分解</h4><p>类似于ANOVA，可以将协方差分析的方差$SS_T$分解为$SS_M$和$SS_R$，由于协变量的存在，协变量既可以解释模型带来的方差又可以解释部分的残差，从而通过控制这部分的<strong>公共方差</strong>可以达到提高$F=\frac{Model}{Residal}$检验量的效果。</p>
+<h2 id="评价模型的好坏"><a href="#评价模型的好坏" class="headerlink" title="评价模型的好坏"></a>评价模型的好坏</h2><p>$$实际值-模型预测值 = 误差$$<br>为了能够不受正负号影响，求取误差的平方和，称之为<code>SS</code>；为了消除数量的影响，进行标准化，将平方和除以自由度（N-1），得到的称为variance，最后求一下平方根，得到标准差standard deviation。</p>
+<h2 id="Sampling-distribution"><a href="#Sampling-distribution" class="headerlink" title="Sampling distribution"></a>Sampling distribution</h2><p>由中心极限定理，可知，在满足以下两个条件的前提下：</p>
 <ul>
-<li>因变量的分解类似于ANOVA<br>$$SST_y=\Sigma_{i=1}^k(y_i-\bar{y})^2=SSM_y+SSR_y$$</li>
-<li>协变量的分解分为两部分，一部分是协变量自身的方差的分解：<br>$$SST_x=\Sigma_{i=1}^k(x_i-\bar{x})^2=SSM_x+SSR_x$$</li>
-<li>另一部分则是协变量与因变量的共同协方差：<br>$$SPT=\Sigma_{i=1}^N\Sigma_{j=1}^{n_i}(y_{ij}-\bar{y})(\bar{x_i}-\bar{x})+\Sigma_{i=1}^k\Sigma_{j=1}^{n_i}(y_{ij}-\bar{y_i})(x_{ij}-\bar{x_i})=SPM+SPR$$</li>
-<li>最后，利用协变量的方差项来修正$SSM$和$SSR$:<br>$$SSM_y’=SSM_y-[\frac{SPT^2}{SST_x}-\frac{SPR^2}{SSR_x}]$$<br>$$SSR_y’=SSR_y-\frac{SPR^2}{SSR_x}$$</li>
+<li>样本量足够大，一般需要&gt;30或者在分布有明显skewed的情况下需要更大的样本量；</li>
+<li>总体已知是正态分布的</li>
+<li>样本中的每次观测都是独立的</li>
 </ul>
-<h3 id="使用ANCOVA的假设"><a href="#使用ANCOVA的假设" class="headerlink" title="使用ANCOVA的假设"></a>使用ANCOVA的假设</h3><p>在ANOVA的基础上，还有两个额外的假设：</p>
-<h4 id="协变量与实验控制变量的效果是独立的"><a href="#协变量与实验控制变量的效果是独立的" class="headerlink" title="协变量与实验控制变量的效果是独立的"></a>协变量与实验控制变量的效果是独立的</h4><p>在理想情况下，协变量解释的方差应该与实验操作无法解释的方差有重叠，而与实验控制变量解释的方差无重叠，这样在剔除协变量方差时可以减少误差项的方差，从而增强实验变量的效果。</p>
-<h4 id="回归斜率的一致性"><a href="#回归斜率的一致性" class="headerlink" title="回归斜率的一致性"></a>回归斜率的一致性</h4><p>如果以协变量作为x轴，因变量作为y轴，先不考虑自变量的影响，将所有的数据绘制在一张图上，回归斜率一致是指：不同组（以不同的自变量的水平划分）构成的数据集，绘制回归线，这些回归线的斜率应该是相同的。</p>
-<h3 id="用R进行ANCOVA的步骤"><a href="#用R进行ANCOVA的步骤" class="headerlink" title="用R进行ANCOVA的步骤"></a>用R进行ANCOVA的步骤</h3><ol>
-<li>输入数据</li>
-<li>探索数据，得到描述性统计，并进行参数统计的适用性检测</li>
-<li>检查协变量与任意的自变量之间的独立性，以协变量作为outcome，进行ANOVA，如果得到显著性的结果，则说明协变量与自变量独立性假设无效</li>
-<li>进行ANCOVA</li>
-<li>进行事后比较或者contrast</li>
-<li>检查回归斜率是否一致：再次进行ANCOVA，纳入自变量与协变量的交互作用，如果交互作用显著，则回归斜率一致假设无效</li>
-</ol>
-<h3 id="ANCOVA使用注意点"><a href="#ANCOVA使用注意点" class="headerlink" title="ANCOVA使用注意点"></a>ANCOVA使用注意点</h3><h4 id="预测变量的输入顺序"><a href="#预测变量的输入顺序" class="headerlink" title="预测变量的输入顺序"></a>预测变量的输入顺序</h4><p>如果使用<code>aov(outcome ~ pred + cov, data)</code> 命令，输入自变量与协变量的顺序的不同会导致结果的不同，所以，在进行ANCOVA之前，需要考虑两个问题：</p>
-<ul>
-<li>采用哪种方式来计算SS？</li>
-<li>采用何种contrast的建立方式？</li>
-</ul>
-<h5 id="sum-of-square的类型"><a href="#sum-of-square的类型" class="headerlink" title="sum of square的类型"></a>sum of square的类型</h5><p>一共有4种计算SS的方式</p>
-<ol>
-<li>Type I：采用分级回归的方式，即按照变量的顺序，依次考虑输入变量的影响。例如有三个变量$x_1, x_2, x_3$按顺序输入模型，则在该方式下计算SS会先考仅仅考虑$x_1$而不考虑其他两个变量，再在考虑$x_1$的前提下计算$x_2$，再在考虑$x_1$和$x_2$的前提下计算$x_3$。<strong>适用场景</strong>：除非是变量之间是完全彼此独立的，否则用这种计算方式难以真实评价各个变量的主效应。</li>
-<li>Type III：在计算一个变量的影响时，会将其他所有变量的影响都考虑进去，而不会在意变量的输入顺序。<strong>特点</strong>：由于是在考虑交互效应的同时去考虑主效应的，如果交互效应显著，则关于主效应是否显著的推断则需要慎重。</li>
-<li>Type II：与Type III类似，唯一不同的是它不会考虑高阶交互项的影响，例如现在要分析某个主效应的影响，则只会考虑其他所有的主效应变量的影响，而不会考虑任意的交互项。</li>
-<li>总结：<br>使用哪种SS的计算方式取决于假设是什么，如果是围绕着交互项研究，则方式II和III得到的结果是一样的；而如果只研究主效应，而不想预测交互效应，则使用方式II；如果设计是不平衡的，采用方式III。</li>
-</ol>
-<h5 id="ANCOVA中的constrast"><a href="#ANCOVA中的constrast" class="headerlink" title="ANCOVA中的constrast"></a>ANCOVA中的constrast</h5><p><strong>注意</strong>在使用Type III计算SS时，必须采用的constrast设计。</p>
-<h5 id="考虑了协变量后对因变量的均值的修正"><a href="#考虑了协变量后对因变量的均值的修正" class="headerlink" title="考虑了协变量后对因变量的均值的修正"></a>考虑了协变量后对因变量的均值的修正</h5>
+<p>其中上述前两条满足一条即可。<br>则，每个样本的<strong>均值</strong>构成的统计量的分布，也是接近正态的，并且以总体的真实均值为中心，伴随有标准误(standard error).<br><code>SE</code>的计算公式为：<br>$$SE = \frac{\sigma}{\sqrt{N}}$$<br>其中N为样本量。<br>当样本量足够大的时候，抽样的总体的分布将对sampling distribution几乎没有影响，将会呈现正态分布。</p>
+<h3 id="对SE的解读"><a href="#对SE的解读" class="headerlink" title="对SE的解读"></a>对SE的解读</h3><p><code>SE</code>的全程是stand error of the mean，指的是sample mean的标准差。其计算方法本来应该是，将每个sample的均值与总体的均值相减，求出平方和，再除以sample的个数，最后对结果开平方。而在实际中，由于无法获取所有的样本，也就不知道总体的均值，而借助中心极限定理，当样本量足够大的时候，可以使用下面的公式来近似计算”样本均值“的标准差。<br>$$\sigma_{\bar{X}}=\frac{s}{\sqrt{N}}$$<br>其中<code>s</code>为一个样本内数据的标准差<code>SD</code>，<code>N</code>是样本量。<br>一个大的SE表示不同的sample的均值之间的变异性很大，因此选择这个sample对总体的代表性不好；而一个小的SE则表示不同的sample的均值之间的差异很小，且与总体均值(population mean)接近，所以可以选用这样的sample来作为对总体的一个有效的反映。<br>实际上，我们是使用样本均值作为总体均值的一个点估计，这样的点估计对于真实的总体均值来说是没有意义的，因为只要与真实的总体均值不相等则无效。此时需要将点估计转化为区间估计，就引入了<code>置信区间</code>的概念。区间的中点就是样本均值。而区间的宽度则是：<br>$$z^<em>*SE$$<br>可以看出，如果置信区间越窄，则证明sample mean是更准确的。$z^</em>$是给定的置信度水平下，对应的标准正态分布的分位数。</p>
+<table>
+<thead>
+<tr>
+<th align="center">90%</th>
+<th align="center">1.64</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">95%</td>
+<td align="center">1.96</td>
+</tr>
+<tr>
+<td align="center">98%</td>
+<td align="center">2.32</td>
+</tr>
+<tr>
+<td align="center">### 对置信区间的解读</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">首先，置信区间不是关于样本的结论，而是关于总体的结论。例如常见的$95%$置信区间，该区间不是属于某一个具体的样本的，而应该是属于样本背后的总体的，它的解读应该是：</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>如果采集100个样本，对每个样本计算其均值和SE，并利用它们构造各自的置信区间，则这样的100个区间中，将会有95个区间，会包含真实的总体的均值。因此对于某一个样本计算得到的置信区间，我们有理由相信，该区间包含真实的总体均值（有5%的可能是不包含的，概率太小)。</p>
+</blockquote>
+<h2 id="检验统计量"><a href="#检验统计量" class="headerlink" title="检验统计量"></a>检验统计量</h2><p>检验统计量是分布已知的函数，对应某一特定值，其频率已知。常见的分布如正态分布、t分布、F分布，都是检验统计量。使用检验统计量，可以来做假设检验。其表达式为：<br>$$test \ \ statistic = \frac{模型解释的方差}{模型不能解释的方差}$$<br>有中心极限定理，sampling distribution是以总体均值为中心，SE为SD的正态分布。这样的正态分布不是标准的正态分布，所以要经过转化，减去均值，再除以标准差，便可以得到$~N(0,1)$的标准正态分布。<br>此时，对应从样本中计算得到的均值，需要利用sampling distribution来判断出现这样结果的概率。利用上述的转化变为标准正态分布，得到了在标准正态分布下的分位数。由于alternative假设可以是单向的也可以是双向的，在双向的条件下，需要计算两边的概率的之和。此时可以给出<code>p-value</code>的含义：<br>$$p = P(观察到和现在一样或者更加极端的现象｜H_0为真, 且一系列假设满足)$$<br>如果是单边的，则只需要计算一边的概率即可，也更容易得到差异显著的结论。</p>
+<h2 id="effect-size"><a href="#effect-size" class="headerlink" title="effect size"></a>effect size</h2><p>实际上在以上的<code>p-value</code>的计算过程中，并没有体现出实际的差异的大小，只要样本量足够大，就可以使得置信区间变得非常窄，检验统计量的绝对值也会变得非常大，所以即使是非常小的差异，都会得出统计学意义上的显著差异。但这并不能说明实际上两者的差异很大。而effect size则直接去度量这样的差异的大小，这里的差异可以指两种不同的treatment所造成的差异的大小。所以在汇报结果的时候，需要同时给出effect size。</p>
+<h2 id="变量类型与使用的统计工具"><a href="#变量类型与使用的统计工具" class="headerlink" title="变量类型与使用的统计工具"></a>变量类型与使用的统计工具</h2><table>
+<thead>
+<tr>
+<th>自变量</th>
+<th>因变量</th>
+<th>分析工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>离散</td>
+<td>离散</td>
+<td>随机表</td>
+</tr>
+<tr>
+<td>离散</td>
+<td>连续</td>
+<td>ANOVA</td>
+</tr>
+<tr>
+<td>连续</td>
+<td>连续</td>
+<td>相关/回归</td>
+</tr>
+</tbody></table>
+
       
     </div>
     
@@ -376,8 +402,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/28/Statistic01/" rel="next" title="Statistics01_Basic Assumptions">
-                <i class="fa fa-chevron-left"></i> Statistics01_Basic Assumptions
+              <a href="/2019/12/27/2019-11-15/" rel="next" title="R语言使用帮助">
+                <i class="fa fa-chevron-left"></i> R语言使用帮助
               </a>
             
           </div>
@@ -386,8 +412,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/12/27/2019-11-15/" rel="prev" title="R语言使用帮助">
-                R语言使用帮助 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/01/03/%E6%AF%94%E8%BE%83%E5%9D%87%E5%80%BC/" rel="prev" title="Statistics-相关性">
+                Statistics-相关性 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -530,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是协方差分析"><span class="nav-number">1.</span> <span class="nav-text">什么是协方差分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#协方差分析的方差的分解"><span class="nav-number">1.1.</span> <span class="nav-text">协方差分析的方差的分解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ANCOVA的假设"><span class="nav-number">2.</span> <span class="nav-text">使用ANCOVA的假设</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#协变量与实验控制变量的效果是独立的"><span class="nav-number">2.1.</span> <span class="nav-text">协变量与实验控制变量的效果是独立的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回归斜率的一致性"><span class="nav-number">2.2.</span> <span class="nav-text">回归斜率的一致性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用R进行ANCOVA的步骤"><span class="nav-number">3.</span> <span class="nav-text">用R进行ANCOVA的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ANCOVA使用注意点"><span class="nav-number">4.</span> <span class="nav-text">ANCOVA使用注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预测变量的输入顺序"><span class="nav-number">4.1.</span> <span class="nav-text">预测变量的输入顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sum-of-square的类型"><span class="nav-number">4.1.1.</span> <span class="nav-text">sum of square的类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ANCOVA中的constrast"><span class="nav-number">4.1.2.</span> <span class="nav-text">ANCOVA中的constrast</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#考虑了协变量后对因变量的均值的修正"><span class="nav-number">4.1.3.</span> <span class="nav-text">考虑了协变量后对因变量的均值的修正</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#统计中的基本概念"><span class="nav-number">1.</span> <span class="nav-text">统计中的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#评价模型的好坏"><span class="nav-number">1.1.</span> <span class="nav-text">评价模型的好坏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sampling-distribution"><span class="nav-number">1.2.</span> <span class="nav-text">Sampling distribution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对SE的解读"><span class="nav-number">1.2.1.</span> <span class="nav-text">对SE的解读</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检验统计量"><span class="nav-number">1.3.</span> <span class="nav-text">检验统计量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#effect-size"><span class="nav-number">1.4.</span> <span class="nav-text">effect size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量类型与使用的统计工具"><span class="nav-number">1.5.</span> <span class="nav-text">变量类型与使用的统计工具</span></a></li></ol></li></ol></div>
             
 
           </div>

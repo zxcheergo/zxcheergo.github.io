@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="什么是协方差分析不属于实验操作变量（自变量）的其他连续型变量，但对因变量会有影响，将它们称为协变量，对协变量的分析称为协方差分析。使用协方差分析的原因：  减少残差的变异型： 如果可以依靠协变量解释残差 $(SS_R)$ ，便可以减少误差项的方差，从而更准确评估自变量的影响$(SS_M)$。 剔除confounds变量的影响">
+<meta name="description" content="R中对数据的预操作">
 <meta name="keywords" content="Statistics">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Statistics02-ANCOVA">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;01&#x2F;ANCOVA&#x2F;index.html">
+<meta property="og:title" content="Statistics-R语言数据基本操作">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;05&#x2F;%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86&#x2F;index.html">
 <meta property="og:site_name" content="zxcheergo&#39;s blog">
-<meta property="og:description" content="什么是协方差分析不属于实验操作变量（自变量）的其他连续型变量，但对因变量会有影响，将它们称为协变量，对协变量的分析称为协方差分析。使用协方差分析的原因：  减少残差的变异型： 如果可以依靠协变量解释残差 $(SS_R)$ ，便可以减少误差项的方差，从而更准确评估自变量的影响$(SS_M)$。 剔除confounds变量的影响">
+<meta property="og:description" content="R中对数据的预操作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-26T16:23:40.106Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;05&#x2F;%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86&#x2F;media&#x2F;15780220544386&#x2F;15780357742269.png">
+<meta property="og:updated_time" content="2020-01-07T14:01:18.727Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;05&#x2F;%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86&#x2F;media&#x2F;15780220544386&#x2F;15780357742269.png">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/01/ANCOVA/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/01/05/数据预处理/"/>
 
 
 
 
 
-  <title>Statistics02-ANCOVA | zxcheergo's blog</title>
+  <title>Statistics-R语言数据基本操作 | zxcheergo's blog</title>
   
 
 
@@ -231,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/ANCOVA/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/05/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zxcheergo">
@@ -248,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Statistics02-ANCOVA</h1>
+          <h1 class="post-title" itemprop="name headline">Statistics-R语言数据基本操作</h1>
         
 
         <div class="post-meta">
@@ -260,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-01T00:00:00+00:00">
-                2019-11-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-05T00:00:00+00:00">
+                2020-01-05
               </time>
             
 
@@ -279,8 +281,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/11/01/ANCOVA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/11/01/ANCOVA/" itemprop="commentsCount"></span>
+                <a href="/2020/01/05/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/01/05/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -308,45 +310,31 @@
       
 
       
-        <h3 id="什么是协方差分析"><a href="#什么是协方差分析" class="headerlink" title="什么是协方差分析"></a>什么是协方差分析</h3><p>不属于实验操作变量（自变量）的其他连续型变量，但对因变量会有影响，将它们称为<strong>协变量</strong>，对协变量的分析称为协方差分析。<br>使用协方差分析的原因：</p>
-<ul>
-<li>减少残差的变异型： 如果可以依靠协变量解释残差 $(SS_R)$ ，便可以减少误差项的方差，从而更准确评估自变量的影响$(SS_M)$。</li>
-<li>剔除confounds变量的影响<a id="more"></a>
+        <h1 id="R中对数据的预操作"><a href="#R中对数据的预操作" class="headerlink" title="R中对数据的预操作"></a>R中对数据的预操作</h1><a id="more"></a>
 
-</li>
-</ul>
-<h4 id="协方差分析的方差的分解"><a href="#协方差分析的方差的分解" class="headerlink" title="协方差分析的方差的分解"></a>协方差分析的方差的分解</h4><p>类似于ANOVA，可以将协方差分析的方差$SS_T$分解为$SS_M$和$SS_R$，由于协变量的存在，协变量既可以解释模型带来的方差又可以解释部分的残差，从而通过控制这部分的<strong>公共方差</strong>可以达到提高$F=\frac{Model}{Residal}$检验量的效果。</p>
-<ul>
-<li>因变量的分解类似于ANOVA<br>$$SST_y=\Sigma_{i=1}^k(y_i-\bar{y})^2=SSM_y+SSR_y$$</li>
-<li>协变量的分解分为两部分，一部分是协变量自身的方差的分解：<br>$$SST_x=\Sigma_{i=1}^k(x_i-\bar{x})^2=SSM_x+SSR_x$$</li>
-<li>另一部分则是协变量与因变量的共同协方差：<br>$$SPT=\Sigma_{i=1}^N\Sigma_{j=1}^{n_i}(y_{ij}-\bar{y})(\bar{x_i}-\bar{x})+\Sigma_{i=1}^k\Sigma_{j=1}^{n_i}(y_{ij}-\bar{y_i})(x_{ij}-\bar{x_i})=SPM+SPR$$</li>
-<li>最后，利用协变量的方差项来修正$SSM$和$SSR$:<br>$$SSM_y’=SSM_y-[\frac{SPT^2}{SST_x}-\frac{SPR^2}{SSR_x}]$$<br>$$SSR_y’=SSR_y-\frac{SPR^2}{SSR_x}$$</li>
-</ul>
-<h3 id="使用ANCOVA的假设"><a href="#使用ANCOVA的假设" class="headerlink" title="使用ANCOVA的假设"></a>使用ANCOVA的假设</h3><p>在ANOVA的基础上，还有两个额外的假设：</p>
-<h4 id="协变量与实验控制变量的效果是独立的"><a href="#协变量与实验控制变量的效果是独立的" class="headerlink" title="协变量与实验控制变量的效果是独立的"></a>协变量与实验控制变量的效果是独立的</h4><p>在理想情况下，协变量解释的方差应该与实验操作无法解释的方差有重叠，而与实验控制变量解释的方差无重叠，这样在剔除协变量方差时可以减少误差项的方差，从而增强实验变量的效果。</p>
-<h4 id="回归斜率的一致性"><a href="#回归斜率的一致性" class="headerlink" title="回归斜率的一致性"></a>回归斜率的一致性</h4><p>如果以协变量作为x轴，因变量作为y轴，先不考虑自变量的影响，将所有的数据绘制在一张图上，回归斜率一致是指：不同组（以不同的自变量的水平划分）构成的数据集，绘制回归线，这些回归线的斜率应该是相同的。</p>
-<h3 id="用R进行ANCOVA的步骤"><a href="#用R进行ANCOVA的步骤" class="headerlink" title="用R进行ANCOVA的步骤"></a>用R进行ANCOVA的步骤</h3><ol>
-<li>输入数据</li>
-<li>探索数据，得到描述性统计，并进行参数统计的适用性检测</li>
-<li>检查协变量与任意的自变量之间的独立性，以协变量作为outcome，进行ANOVA，如果得到显著性的结果，则说明协变量与自变量独立性假设无效</li>
-<li>进行ANCOVA</li>
-<li>进行事后比较或者contrast</li>
-<li>检查回归斜率是否一致：再次进行ANCOVA，纳入自变量与协变量的交互作用，如果交互作用显著，则回归斜率一致假设无效</li>
-</ol>
-<h3 id="ANCOVA使用注意点"><a href="#ANCOVA使用注意点" class="headerlink" title="ANCOVA使用注意点"></a>ANCOVA使用注意点</h3><h4 id="预测变量的输入顺序"><a href="#预测变量的输入顺序" class="headerlink" title="预测变量的输入顺序"></a>预测变量的输入顺序</h4><p>如果使用<code>aov(outcome ~ pred + cov, data)</code> 命令，输入自变量与协变量的顺序的不同会导致结果的不同，所以，在进行ANCOVA之前，需要考虑两个问题：</p>
-<ul>
-<li>采用哪种方式来计算SS？</li>
-<li>采用何种contrast的建立方式？</li>
-</ul>
-<h5 id="sum-of-square的类型"><a href="#sum-of-square的类型" class="headerlink" title="sum of square的类型"></a>sum of square的类型</h5><p>一共有4种计算SS的方式</p>
-<ol>
-<li>Type I：采用分级回归的方式，即按照变量的顺序，依次考虑输入变量的影响。例如有三个变量$x_1, x_2, x_3$按顺序输入模型，则在该方式下计算SS会先考仅仅考虑$x_1$而不考虑其他两个变量，再在考虑$x_1$的前提下计算$x_2$，再在考虑$x_1$和$x_2$的前提下计算$x_3$。<strong>适用场景</strong>：除非是变量之间是完全彼此独立的，否则用这种计算方式难以真实评价各个变量的主效应。</li>
-<li>Type III：在计算一个变量的影响时，会将其他所有变量的影响都考虑进去，而不会在意变量的输入顺序。<strong>特点</strong>：由于是在考虑交互效应的同时去考虑主效应的，如果交互效应显著，则关于主效应是否显著的推断则需要慎重。</li>
-<li>Type II：与Type III类似，唯一不同的是它不会考虑高阶交互项的影响，例如现在要分析某个主效应的影响，则只会考虑其他所有的主效应变量的影响，而不会考虑任意的交互项。</li>
-<li>总结：<br>使用哪种SS的计算方式取决于假设是什么，如果是围绕着交互项研究，则方式II和III得到的结果是一样的；而如果只研究主效应，而不想预测交互效应，则使用方式II；如果设计是不平衡的，采用方式III。</li>
-</ol>
-<h5 id="ANCOVA中的constrast"><a href="#ANCOVA中的constrast" class="headerlink" title="ANCOVA中的constrast"></a>ANCOVA中的constrast</h5><p><strong>注意</strong>在使用Type III计算SS时，必须采用的constrast设计。</p>
-<h5 id="考虑了协变量后对因变量的均值的修正"><a href="#考虑了协变量后对因变量的均值的修正" class="headerlink" title="考虑了协变量后对因变量的均值的修正"></a>考虑了协变量后对因变量的均值的修正</h5>
+<h2 id="1-使用dplyr包"><a href="#1-使用dplyr包" class="headerlink" title="1 使用dplyr包"></a>1 使用dplyr包</h2><h3 id="1-1-选择特定的列变量"><a href="#1-1-选择特定的列变量" class="headerlink" title="1.1 选择特定的列变量"></a>1.1 选择特定的列变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">library(dplyr)</span><br><span class="line">newDataFrame &lt;- select(oldDataFrame, 1:3) #通过选择列数字索引的方式</span><br><span class="line">newDataFrame &lt;- select(oldDataFrame, var1:var3) #通过选择列名称的方式</span><br><span class="line">newDataFrame &lt;- select(oldDataFrame, c(&quot;var1&quot;, &quot;var4&quot;) #直接给定变量名</span><br><span class="line">newDataFrame &lt;- select(oldDataFrame, -(var1:var3)) #添加-表示去掉某几列</span><br><span class="line">newDataFrame &lt;- select(oldDataFrame, ends_with/starts_with/contains(&quot;char&quot;) #选择变量中某些特征</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newDataFrame &lt;- mutate(oldDataFrame, newVar = &apos;manipulation&apos;) #添加一个新的变量</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-选择特定的行变量"><a href="#1-2-选择特定的行变量" class="headerlink" title="1.2 选择特定的行变量"></a>1.2 选择特定的行变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newDataFrame &lt;- filter(oldDataFrame, 逻辑表达式)</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-数据重组-分组"><a href="#1-3-数据重组-分组" class="headerlink" title="1.3 数据重组/分组"></a>1.3 数据重组/分组</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newDataFrame &lt;- arrange(oldDataFrame, (desc)var) #按照升序/降序排列</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">newDataFrame &lt;- group_by(oldDataFrame, var) #按照某一变量的取值将该数据框分组</span><br><span class="line"># 按照百分位数对一个变量的取值进行切分，作为不同的分组</span><br><span class="line">qq &lt;- quantile(oldDataFrame$var, seq(0, 1, 0.2), na.rm = T)</span><br><span class="line">newDataFrame &lt;- mutate(oldDataFrame, var.quint = cut(var, qq)) #cut函数的作用是将连续变量按照qq中的区间，划分为若干个因子</span><br><span class="line">quint &lt;- group_by(newDataFrame, var.quint)</span><br><span class="line"></span><br><span class="line"># 同时对行和列进行操作</span><br><span class="line">newDataFrame &lt;- subset(oldDataFrame, 逻辑表达式, select=c(&quot;var1&quot;, &quot;var2&quot;))</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="1-4-变量重命名"><a href="#1-4-变量重命名" class="headerlink" title="1.4 变量重命名"></a>1.4 变量重命名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newDataFrame &lt;- rename(oldDataFrame, new = old)</span><br></pre></td></tr></table></figure>
+<h2 id="2-高级数据操作"><a href="#2-高级数据操作" class="headerlink" title="2 高级数据操作"></a>2 高级数据操作</h2><p>在R中提供有<code>apply</code>函数族，可以将一个函数应用到矩阵、数组、数据框的任何维度上。<br><img src="media/15780220544386/15780357742269.png" alt=""></p>
+<h3 id="2-1-apply函数"><a href="#2-1-apply函数" class="headerlink" title="2.1 apply函数"></a>2.1 apply函数</h3><p>函数定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply(x, MARGIN, FUN, ···)</span><br></pre></td></tr></table></figure>
+<p>其中<code>MARGIN</code>表示维度的下标，<code>MARGIN=1</code>表示对行操作，<code>MARGIN=2</code>表示对列进行操作。x可以是一个矩阵、数组、数据框。FUN是系统自带或者自定义的函数。<br><strong>注意</strong>：如果需要自行指定<code>FUN</code>中的形式参数对应的实际参数，直接在<code>apply</code>中输入，格式为<code>形式参数=实际参数</code>，而表示数据的参数则不需要额外输入。</p>
+<h3 id="2-2-lapply函数"><a href="#2-2-lapply函数" class="headerlink" title="2.2 lapply函数"></a>2.2 lapply函数</h3><p>一个基础循环操作函数，可以对列表、数据框这两类数据结构进行循环，并返回和输入数据相同长度的list结构作为结果。<br>函数定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lapply(X, FUN, ···)</span><br></pre></td></tr></table></figure>
+<p>此处的<code>X</code>如果是一个<code>list</code>，则会按照<code>list</code>中的<code>KEY</code>进行循环；如果<code>X</code>是一个<code>data.frame</code>，则会按照列进行分组，从而循环。</p>
+<h3 id="2-3-sapply函数"><a href="#2-3-sapply函数" class="headerlink" title="2.3 sapply函数"></a>2.3 sapply函数</h3><p><code>sapply()</code>是一个简化版的<code>lapply()</code>函数，其返回值为向量，而非<code>list</code>对象。<br>函数定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sapply(X, FUN, ..., simplify=TRUE, USE.NAMES=TRUE)</span><br></pre></td></tr></table></figure>
+<p>其中，<code>X</code>可以是数组、矩阵、数据框。如果是对矩阵操作，则会对矩阵中的每一个元素进行<code>FUN</code>操作；而如果是对数据框操作，则还是按照列进行计算。</p>
+<h3 id="2-4-tapply函数"><a href="#2-4-tapply函数" class="headerlink" title="2.4 tapply函数"></a>2.4 tapply函数</h3><p><code>tapply()</code>函数用于分组的循环计算，通过<code>index</code>参数可以将数据集进行分组。<br>函数定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tapply(X, INDEX, FUN, ...)</span><br></pre></td></tr></table></figure>
+<p>其中，<code>X</code>是<strong>向量</strong>，<code>INDEX</code>是用于分组的索引。可以是一个因子的<code>list</code>构成，告知如何将<code>X</code>进行分组。</p>
+
       
     </div>
     
@@ -376,8 +364,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/28/Statistic01/" rel="next" title="Statistics01_Basic Assumptions">
-                <i class="fa fa-chevron-left"></i> Statistics01_Basic Assumptions
+              <a href="/2020/01/03/%E6%AF%94%E8%BE%83%E5%9D%87%E5%80%BC/" rel="next" title="Statistics-相关性">
+                <i class="fa fa-chevron-left"></i> Statistics-相关性
               </a>
             
           </div>
@@ -386,8 +374,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/12/27/2019-11-15/" rel="prev" title="R语言使用帮助">
-                R语言使用帮助 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/01/05/ANOVA/" rel="prev" title="Statistics-ANOVA">
+                Statistics-ANOVA <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -530,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是协方差分析"><span class="nav-number">1.</span> <span class="nav-text">什么是协方差分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#协方差分析的方差的分解"><span class="nav-number">1.1.</span> <span class="nav-text">协方差分析的方差的分解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ANCOVA的假设"><span class="nav-number">2.</span> <span class="nav-text">使用ANCOVA的假设</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#协变量与实验控制变量的效果是独立的"><span class="nav-number">2.1.</span> <span class="nav-text">协变量与实验控制变量的效果是独立的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回归斜率的一致性"><span class="nav-number">2.2.</span> <span class="nav-text">回归斜率的一致性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用R进行ANCOVA的步骤"><span class="nav-number">3.</span> <span class="nav-text">用R进行ANCOVA的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ANCOVA使用注意点"><span class="nav-number">4.</span> <span class="nav-text">ANCOVA使用注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预测变量的输入顺序"><span class="nav-number">4.1.</span> <span class="nav-text">预测变量的输入顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sum-of-square的类型"><span class="nav-number">4.1.1.</span> <span class="nav-text">sum of square的类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ANCOVA中的constrast"><span class="nav-number">4.1.2.</span> <span class="nav-text">ANCOVA中的constrast</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#考虑了协变量后对因变量的均值的修正"><span class="nav-number">4.1.3.</span> <span class="nav-text">考虑了协变量后对因变量的均值的修正</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#R中对数据的预操作"><span class="nav-number">1.</span> <span class="nav-text">R中对数据的预操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-使用dplyr包"><span class="nav-number">1.1.</span> <span class="nav-text">1 使用dplyr包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-选择特定的列变量"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 选择特定的列变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-选择特定的行变量"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 选择特定的行变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-数据重组-分组"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 数据重组/分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-变量重命名"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 变量重命名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-高级数据操作"><span class="nav-number">1.2.</span> <span class="nav-text">2 高级数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-apply函数"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 apply函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-lapply函数"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 lapply函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-sapply函数"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 sapply函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-tapply函数"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 tapply函数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
