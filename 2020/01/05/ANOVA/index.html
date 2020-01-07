@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="ANOVAANOVA又称为方差分析，首先需要将方差分解  $SS_T$: 总体方差是指每个观测值与所有的样本计算出来的均值的平方差之和 $SS_M$: 模型方差是指每组的均值与所有的样本的均值的平方差之和 模型可以解释的方差 $SS_R$: 残差方差是指观测值与每组的均值的平方差之和 模型无法解释的方差  自由度：$df_M = k - 1$, 其中k是指分组的个数$df_R = N - k$,">
+<meta name="description" content="ANOVAANOVA又称为方差分析，首先需要将方差分解  $SS_T$: 总体方差是指每个观测值与所有的样本计算出来的均值的平方差之和 $SS_M$: 模型方差是指每组的均值与所有的样本的均值的平方差之和 模型可以解释的方差 $SS_R$: 残差方差是指观测值与每组的均值的平方差之和 模型无法解释的方差">
 <meta name="keywords" content="Statistics">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Statistics-ANOVA">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;05&#x2F;ANOVA&#x2F;index.html">
 <meta property="og:site_name" content="zxcheergo&#39;s blog">
-<meta property="og:description" content="ANOVAANOVA又称为方差分析，首先需要将方差分解  $SS_T$: 总体方差是指每个观测值与所有的样本计算出来的均值的平方差之和 $SS_M$: 模型方差是指每组的均值与所有的样本的均值的平方差之和 模型可以解释的方差 $SS_R$: 残差方差是指观测值与每组的均值的平方差之和 模型无法解释的方差  自由度：$df_M = k - 1$, 其中k是指分组的个数$df_R = N - k$,">
+<meta property="og:description" content="ANOVAANOVA又称为方差分析，首先需要将方差分解  $SS_T$: 总体方差是指每个观测值与所有的样本计算出来的均值的平方差之和 $SS_M$: 模型方差是指每组的均值与所有的样本的均值的平方差之和 模型可以解释的方差 $SS_R$: 残差方差是指观测值与每组的均值的平方差之和 模型无法解释的方差">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-07T14:01:12.691Z">
+<meta property="og:updated_time" content="2020-01-07T14:09:33.121Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -314,14 +314,17 @@
 <li>$SS_M$: 模型方差是指每组的均值与所有的样本的均值的平方差之和 <strong>模型可以解释的方差</strong></li>
 <li>$SS_R$: 残差方差是指观测值与每组的均值的平方差之和 <strong>模型无法解释的方差</strong></li>
 </ul>
+<a id="more"></a>
+
 <p>自由度：<br>$df_M = k - 1$, 其中k是指分组的个数<br>$df_R = N - k$, 其中N是指样本量</p>
 <h2 id="1-1-way非重复测量ANOVA"><a href="#1-1-way非重复测量ANOVA" class="headerlink" title="1 1-way非重复测量ANOVA"></a>1 1-way非重复测量ANOVA</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># ANOVA部分</span><br><span class="line">model &lt;- aov(value ~ group, data = dataFrame)</span><br><span class="line">summary(model)</span><br><span class="line"># 后续的两两比较</span><br><span class="line">pairwise.t.test(dataFrame$value, dataFrame$group, p.adjust.method = &quot;bonferroni&quot;/&quot;holm&quot;/&quot;BH&quot;)</span><br><span class="line">TukeyHSD(model) # 直接得到两两比较的结果</span><br></pre></td></tr></table></figure>
 <h2 id="2-1-way重复测量ANOVA"><a href="#2-1-way重复测量ANOVA" class="headerlink" title="2 1-way重复测量ANOVA"></a>2 1-way重复测量ANOVA</h2><p>重复测量中，假设有<code>n</code>个被试，每个被试经历<code>k</code>个水平，则自由度为：</p>
 <ul>
 <li>$df_W = n(k-1)$</li>
 <li>$df_M = k - 1$</li>
-<li>$df_R = (k-1)(n-1)$<h3 id="2-1-数据格式转化"><a href="#2-1-数据格式转化" class="headerlink" title="2.1 数据格式转化"></a>2.1 数据格式转化</h3>首先需要将数据由宽格式-&gt;长格式，这一步使用<code>reshape</code>包。</li>
+<li>$df_R = (k-1)(n-1)$</li>
 </ul>
+<h3 id="2-1-数据格式转化"><a href="#2-1-数据格式转化" class="headerlink" title="2.1 数据格式转化"></a>2.1 数据格式转化</h3><p>首先需要将数据由宽格式-&gt;长格式，这一步使用<code>reshape</code>包。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">library(reshape)</span><br><span class="line">longData &lt;- melt(wideData, id = &quot;participant&quot;, measured = c(&quot;measure1&quot;, &quot;measure2&quot;, &quot;measure3&quot;)</span><br><span class="line">names(longData) &lt;- c(&quot;participant&quot;, &quot;nameOfTreatment&quot;, &quot;value&quot;) </span><br><span class="line"># 此处nameOfTreatment是不同的组内变量的统称，value是对应的每个测量的值</span><br></pre></td></tr></table></figure>
 <p>注意，此处需要保证<strong>wideData</strong>是<strong>data.frame</strong>, 否则会报错。</p>
 <h3 id="2-2-ezANOVA"><a href="#2-2-ezANOVA" class="headerlink" title="2.2 ezANOVA"></a>2.2 ezANOVA</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(ez)</span><br><span class="line">model &lt;- ezANOVA(data = longData, dv = .(value), wid = .(participant), within = .(nameOfTreatment), detailed = TRUE, type = n)</span><br><span class="line">model</span><br></pre></td></tr></table></figure>
