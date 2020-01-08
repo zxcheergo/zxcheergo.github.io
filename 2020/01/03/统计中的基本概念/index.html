@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="zxcheergo&#39;s blog">
 <meta property="og:description" content="统计中的基本概念">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-07T14:01:27.319Z">
+<meta property="og:updated_time" content="2020-01-08T02:19:09.061Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -338,7 +338,9 @@
 <li>样本中的每次观测都是独立的</li>
 </ul>
 <p>其中上述前两条满足一条即可。<br>则，每个样本的<strong>均值</strong>构成的统计量的分布，也是接近正态的，并且以总体的真实均值为中心，伴随有标准误(standard error).<br><code>SE</code>的计算公式为：<br>$$SE = \frac{\sigma}{\sqrt{N}}$$<br>其中N为样本量。<br>当样本量足够大的时候，抽样的总体的分布将对sampling distribution几乎没有影响，将会呈现正态分布。</p>
-<h3 id="对SE的解读"><a href="#对SE的解读" class="headerlink" title="对SE的解读"></a>对SE的解读</h3><p><code>SE</code>的全程是stand error of the mean，指的是sample mean的标准差。其计算方法本来应该是，将每个sample的均值与总体的均值相减，求出平方和，再除以sample的个数，最后对结果开平方。而在实际中，由于无法获取所有的样本，也就不知道总体的均值，而借助中心极限定理，当样本量足够大的时候，可以使用下面的公式来近似计算”样本均值“的标准差。<br>$$\sigma_{\bar{X}}=\frac{s}{\sqrt{N}}$$<br>其中<code>s</code>为一个样本内数据的标准差<code>SD</code>，<code>N</code>是样本量。<br>一个大的SE表示不同的sample的均值之间的变异性很大，因此选择这个sample对总体的代表性不好；而一个小的SE则表示不同的sample的均值之间的差异很小，且与总体均值(population mean)接近，所以可以选用这样的sample来作为对总体的一个有效的反映。<br>实际上，我们是使用样本均值作为总体均值的一个点估计，这样的点估计对于真实的总体均值来说是没有意义的，因为只要与真实的总体均值不相等则无效。此时需要将点估计转化为区间估计，就引入了<code>置信区间</code>的概念。区间的中点就是样本均值。而区间的宽度则是：<br>$$z^<em>*SE$$<br>可以看出，如果置信区间越窄，则证明sample mean是更准确的。$z^</em>$是给定的置信度水平下，对应的标准正态分布的分位数。</p>
+<h3 id="对SE的解读"><a href="#对SE的解读" class="headerlink" title="对SE的解读"></a>对SE的解读</h3><p><code>SE</code>的全程是stand error of the mean，指的是sample mean的标准差。其计算方法本来应该是，将每个sample的均值与总体的均值相减，求出平方和，再除以sample的个数，最后对结果开平方。而在实际中，由于无法获取所有的样本，也就不知道总体的均值，而借助中心极限定理，当样本量足够大的时候，可以使用下面的公式来近似计算”样本均值“的标准差。<br>$$\sigma_{\bar{X}}=\frac{s}{\sqrt{N}}$$<br>其中<code>s</code>为一个样本内数据的标准差<code>SD</code>，<code>N</code>是样本量。<br>一个大的SE表示不同的sample的均值之间的变异性很大，因此选择这个sample对总体的代表性不好；而一个小的SE则表示不同的sample的均值之间的差异很小，且与总体均值(population mean)接近，所以可以选用这样的sample来作为对总体的一个有效的反映。<br>实际上，我们是使用样本均值作为总体均值的一个点估计，这样的点估计对于真实的总体均值来说是没有意义的，因为只要与真实的总体均值不相等则无效。此时需要将点估计转化为区间估计，就引入了<code>置信区间</code>的概念。区间的中点就是样本均值。而区间的宽度则是：</p>
+<p>$$z^ * * SE$$</p>
+<p>可以看出，如果置信区间越窄，则证明sample mean是更准确的。$z^ * $是给定的置信度水平下，对应的标准正态分布的分位数。</p>
 <table>
 <thead>
 <tr>
