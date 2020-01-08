@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="zxcheergo&#39;s blog">
 <meta property="og:description" content="参数检验前对变量数据的假设检验对一个变量做参数检验是在以下四个假设成立的前提之下进行的：  数据的正态性 方差一致性 变量是连续变量（至少是等间距变量或是比例变量） 变量的观测值之间是独立的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-08T02:13:44.686Z">
+<meta property="og:updated_time" content="2020-01-08T03:51:57.271Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -354,7 +354,56 @@
 <li>p-value &lt; 0.05 认为待判断分布与正态分布显著不同。<em>注意</em> 当样本量很大时，即使是与正态分布的差异很小也会得到显著的结果，此时需要借助QQ-plot来判别。</li>
 <li>p-value &gt; 0.05 认为待判断的分布与正态分布没有显著差别。</li>
 </ul>
-<h3 id="方差同质检验"><a href="#方差同质检验" class="headerlink" title="方差同质检验"></a>方差同质检验</h3>
+<h3 id="方差同质检验"><a href="#方差同质检验" class="headerlink" title="方差同质检验"></a>方差同质检验</h3><h2 id="不同的统计工具下的的假设"><a href="#不同的统计工具下的的假设" class="headerlink" title="不同的统计工具下的的假设"></a>不同的统计工具下的的假设</h2><h3 id="1-t检验"><a href="#1-t检验" class="headerlink" title="1 t检验"></a>1 t检验</h3><p>t检验首先是参数检验，可以分为两类：dependent和independent。</p>
+<h4 id="dependent-t检验"><a href="#dependent-t检验" class="headerlink" title="dependent t检验"></a>dependent t检验</h4><ul>
+<li>两组paired的score之间的差值应该是服从正态分布的，而不是score本身</li>
+<li>数据应该至少是interval level的</li>
+</ul>
+<h4 id="independent-t检验"><a href="#independent-t检验" class="headerlink" title="independent t检验"></a>independent t检验</h4><ul>
+<li>在不同的treatment下的score应该是独立的（因为来自不同的人）</li>
+<li>方差同质性</li>
+<li>不同的treatment下，score的应该是服从正态分布的</li>
+</ul>
+<h3 id="2-方差分析ANOVA"><a href="#2-方差分析ANOVA" class="headerlink" title="2 方差分析ANOVA"></a>2 方差分析ANOVA</h3><ul>
+<li>独立性</li>
+<li>正态性：要求<strong>组内</strong>的score的分布应该是正态的<ul>
+<li>当group size相同的时候，$F-statistics$对正态性假定是robust的</li>
+<li>当group size不相同的时候，$F-statistics$的准确性会受到skew的影响</li>
+</ul>
+</li>
+<li>方差同质性<ul>
+<li>当group size相同的时候，$F-statistics$对该假定是robust的</li>
+<li>当group size不同的时候，会受到样本量大小和方差大小的影响</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-ANCOVA"><a href="#3-ANCOVA" class="headerlink" title="3 ANCOVA"></a>3 ANCOVA</h3><ul>
+<li>观测之间是独立性</li>
+<li>不同组内的score是正态分布的</li>
+<li>不同组内的score之间满足方差同质性</li>
+<li>NEW：对每个自变量，因变量和协变量之间的关系是线性的</li>
+<li>NEW：上述的线性关系的斜率都是一致的，即回归斜率是相同的</li>
+<li>NEW：协变量和自变量之间是相互独立的</li>
+<li>NEW：协变量的测量是没有误差的！这是因为协变量在应用于因变量的预测时，并没有包含误差项</li>
+</ul>
+<h3 id="4-回归"><a href="#4-回归" class="headerlink" title="4 回归"></a>4 回归</h3><ul>
+<li>变量类型假设<ul>
+<li>因变量需要是连续变量</li>
+<li>自变量可以是连续和离散的变量</li>
+</ul>
+</li>
+<li>预测变量的方差不能是0</li>
+<li>模型是线性的</li>
+<li>所有的因变量的值应该是来自不同的人</li>
+<li>残差项的假设<ul>
+<li>残差项-不同观测之间应该满足线性关系</li>
+<li>不同的自变量水平下的残差项的方差应该相同</li>
+<li>残差项服从正态分布</li>
+<li>残差项彼此之间应该是独立的</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     
@@ -538,7 +587,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数检验前对变量数据的假设检验"><span class="nav-number">1.</span> <span class="nav-text">参数检验前对变量数据的假设检验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量类型分类"><span class="nav-number">1.1.</span> <span class="nav-text">变量类型分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方差同质检验"><span class="nav-number">1.2.</span> <span class="nav-text">方差同质检验</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数检验前对变量数据的假设检验"><span class="nav-number">1.</span> <span class="nav-text">参数检验前对变量数据的假设检验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量类型分类"><span class="nav-number">1.1.</span> <span class="nav-text">变量类型分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方差同质检验"><span class="nav-number">1.2.</span> <span class="nav-text">方差同质检验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同的统计工具下的的假设"><span class="nav-number">2.</span> <span class="nav-text">不同的统计工具下的的假设</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-t检验"><span class="nav-number">2.1.</span> <span class="nav-text">1 t检验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dependent-t检验"><span class="nav-number">2.1.1.</span> <span class="nav-text">dependent t检验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#independent-t检验"><span class="nav-number">2.1.2.</span> <span class="nav-text">independent t检验</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-方差分析ANOVA"><span class="nav-number">2.2.</span> <span class="nav-text">2 方差分析ANOVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ANCOVA"><span class="nav-number">2.3.</span> <span class="nav-text">3 ANCOVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-回归"><span class="nav-number">2.4.</span> <span class="nav-text">4 回归</span></a></li></ol></li></ol></div>
             
 
           </div>
